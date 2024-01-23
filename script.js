@@ -7,17 +7,33 @@ function search(str) {
 	let results = [];
 
 	// TODO
+	results =  fruit.reduce(function(accumulator, currentValue){
+
+		if (currentValue.toLowerCase().includes(str.toLowerCase())){
+			accumulator.push(currentValue);			
+		}
+		return accumulator;
+	}, []);
 
 	return results;
 }
 
 function searchHandler(e) {
 	// TODO
+	//console.log("Entered Search Handler: ", e.target.value);
+	showSuggestions(search(e.target.value), e.target.value);
+
 }
 
 function showSuggestions(results, inputVal) {
 
 	// TODO
+	$("ul").empty();
+	results.forEach(element => {
+		$("ul").append(`<li>${element}</li>`);		
+	});
+	
+
 }
 
 function useSuggestion(e) {
@@ -26,3 +42,5 @@ function useSuggestion(e) {
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
+
+//input.addEventListener('keypress',searchHandler);
