@@ -29,8 +29,13 @@ function showSuggestions(results, inputVal) {
 
 	// TODO
 	$("ul").empty();
+	let ul = document.querySelector('ul');
 	results.forEach(element => {
-		$("ul").append(`<li>${element}</li>`);		
+		//$("ul").append(`<li>${element}</li>`);
+		let li = document.createElement('li')	;
+		li.textContent = element;
+		li.addEventListener('mouseover', useSuggestion);
+		ul.append(li);
 	});
 	
 
@@ -38,6 +43,14 @@ function showSuggestions(results, inputVal) {
 
 function useSuggestion(e) {
 	// TODO
+	//let input = document.getElementById("fruit");
+	//input.textContent = e.target.value;
+	$("li").toArray().forEach(element => {
+		element.style.backgroundColor = "";
+	});
+	console.log("Entered useSuggestion", e.target);
+	e.target.style.backgroundColor = "#FDFF47";
+
 }
 
 input.addEventListener('keyup', searchHandler);
