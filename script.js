@@ -34,23 +34,28 @@ function showSuggestions(results, inputVal) {
 		//$("ul").append(`<li>${element}</li>`);
 		let li = document.createElement('li')	;
 		li.textContent = element;
-		li.addEventListener('mouseover', useSuggestion);
+		li.addEventListener('mouseover', highlightSuggestion);
 		ul.append(li);
 	});
 	
 
 }
 
+function highlightSuggestion(e){
+	$("li").toArray().forEach(element => {
+		element.style.backgroundColor = "";
+	});
+	console.log("Entered highlightSuggestion", e.target);
+	e.target.style.backgroundColor = "#DF0707";
+}
+
 function useSuggestion(e) {
 	// TODO
 	//let input = document.getElementById("fruit");
 	//input.textContent = e.target.value;
-	$("li").toArray().forEach(element => {
-		element.style.backgroundColor = "";
-	});
-	console.log("Entered useSuggestion", e.target);
-	e.target.style.backgroundColor = "#FDFF47";
-
+  console.log("Entered useSuggestion", e.target.innerText);
+	console.log("input is: ", input);
+	input.value = e.target.innerText;
 }
 
 input.addEventListener('keyup', searchHandler);
